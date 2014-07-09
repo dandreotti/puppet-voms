@@ -13,13 +13,12 @@ class puppet-voms::install-clients {
   require => Class["puppet-emi3-release"]
   }
 
-  file{'/etc/grid-security/vomsdir':
+  file{['/etc/grid-security','/etc/grid-security/vomsdir']:
     ensure  => directory,
     owner   => root,
     group   => root,
     mode    => 0755,
     purge   => true,
-    recurse => true,
     require => Class['puppet-egi-trust-anchors'],
   }
 
