@@ -4,13 +4,13 @@
 # 
 class puppet-voms::install-clients {
 
-  include emi3-release
-  include egi-trust-anchors
+  include puppet-emi3-release
+  include puppet-egi-trust-anchors
 
   package { "install-voms-clients3": 
   name  => 'voms-clients3',
   ensure  => latest, 
-  require => Class["emi3-release"]
+  require => Class["puppet-emi3-release"]
   }
 
   file{'/etc/grid-security/vomsdir':
@@ -20,7 +20,7 @@ class puppet-voms::install-clients {
     mode    => 0755,
     purge   => true,
     recurse => true,
-    require => Class['egi-trust-anchors'],
+    require => Class['puppet-egi-trust-anchors'],
   }
 
   file{'/etc/vomses':
@@ -30,7 +30,7 @@ class puppet-voms::install-clients {
     mode    => 0755,
     purge   => true,
     recurse => true,
-    require => Class['egi-trust-anchors'],
+    require => Class['puppet-egi-trust-anchors'],
   }
 
 }
