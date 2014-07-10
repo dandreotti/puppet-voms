@@ -45,7 +45,7 @@ define puppet-voms::client ($vo = $name, $servers = []  ) {
                    mode    => 0755, 
                    recurse => true,
                    purge   => true
-                   #require => File['/etc/grid-security/vomsdir']
+                   require => File['/etc/grid-security/vomsdir']
   }
 
   # Set defaults for the rest of this scope.
@@ -61,11 +61,11 @@ define puppet-voms::client ($vo = $name, $servers = []  ) {
 <% @servers.each do |s| -%>
 /etc/grid-security/vomsdir/<%= @vo %>/<%= s["server"] %>.lsc:
    content: "<%= s["dn"] %>\n<%= s["ca_dn"] %>\n"
-   #require: File[/etc/grid-security/vomsdir/<%= @vo %>]
+   require: File[/etc/grid-security/vomsdir/<%= @vo %>]
 
 /etc/vomses/<%= @vo %>-<%= s["server"] %>:
    content: "\"<%= @vo %>\" \"<%= s["server"] %>\" \"<%= s["port"] %>\" \"<%= s["dn"] %>\" \"<%= @vo %>\" \"24\"\n"
-   #require: File[/etc/vomses]
+   require: File[/etc/vomses]
 
 <% end -%>
 
