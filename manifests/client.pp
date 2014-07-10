@@ -65,7 +65,7 @@ define puppet-voms::client ($vo = $name, $servers = []  ) {
 
 /etc/vomses/<%= @vo %>-<%= s["server"] %>:
    content: "\"<%= @vo %>\" \"<%= s["server"] %>\" \"<%= s["port"] %>\" \"<%= s["dn"] %>\" \"<%= @vo %>\" \"24\"\n"
-   require: File[/etc/vomses]
+   #require: File[/etc/vomses]
 
 <% end -%>
 
