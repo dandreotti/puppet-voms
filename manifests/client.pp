@@ -36,7 +36,7 @@
 #
 define puppet-voms::client ($vo = $name, $servers = []  ) {
    ensure_resource('class','puppet-voms::install-clients')
-   Class[puppet-voms::Install-clients] -> puppet-voms::Client[$vo]
+   #Class[puppet-voms::Install-clients] -> puppet-voms::Client[$vo]
 
    file {"/etc/grid-security/vomsdir/${vo}":
                    ensure  => directory,
@@ -61,11 +61,11 @@ define puppet-voms::client ($vo = $name, $servers = []  ) {
 <% @servers.each do |s| -%>
 /etc/grid-security/vomsdir/<%= @vo %>/<%= s["server"] %>.lsc:
    content: "<%= s["dn"] %>\n<%= s["ca_dn"] %>\n"
-   require: File[/etc/grid-security/vomsdir/<%= @vo %>]
+   #require: File[/etc/grid-security/vomsdir/<%= @vo %>]
 
 /etc/vomses/<%= @vo %>-<%= s["server"] %>:
    content: "\"<%= @vo %>\" \"<%= s["server"] %>\" \"<%= s["port"] %>\" \"<%= s["dn"] %>\" \"<%= @vo %>\" \"24\"\n"
-   require: File[/etc/vomses]
+   #require: File[/etc/vomses]
 
 <% end -%>
 
