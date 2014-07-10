@@ -44,7 +44,7 @@ define puppet-voms::client ($vo = $name, $servers = []  ) {
                    group   => root,
                    mode    => 0755, 
                    recurse => true,
-                   purge   => true
+                   purge   => true,
                    require => File['/etc/grid-security/vomsdir']
   }
 
