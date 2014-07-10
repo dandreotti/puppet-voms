@@ -35,8 +35,8 @@
 # CERN IT/PES/PS <it-dep-pes-ps@cern.ch>
 #
 define puppet-voms::client ($vo = $name, $servers = []  ) {
-   ensure_resource('class','puppet-voms::install-clients')
-   Class[puppet-voms::Install-clients] -> puppet-voms::Client[$vo]
+   #ensure_resource('class','puppet-voms::install-clients')
+   #Class[puppet-voms::Install-clients] -> puppet-voms::Client[$vo]
 
    file {"/etc/grid-security/vomsdir/${vo}":
                    ensure  => directory,
